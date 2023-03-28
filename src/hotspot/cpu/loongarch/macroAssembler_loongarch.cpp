@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 1997, 2014, Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 2017, 2022, Loongson Technology. All rights reserved.
+ * Copyright (c) 2017, 2023, Loongson Technology. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * This code is free software; you can redistribute it and/or modify it
@@ -2277,7 +2277,7 @@ void MacroAssembler::fast_unlock(Register objReg, Register boxReg, Register resR
       move(AT, R0);
       bnez(scrReg, DONE_SET);
 
-      membar(Assembler::Membar_mask_bits(LoadLoad|LoadStore));
+      membar(Assembler::Membar_mask_bits(LoadStore|StoreStore));
       st_d(R0, Address(tmpReg, ObjectMonitor::owner_offset_in_bytes() - 2));
       li(resReg, 1);
       b(DONE);
